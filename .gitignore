@@ -20,3 +20,4 @@ wandb/
 # Other
 *.log
 *.sqlite3
+old/
