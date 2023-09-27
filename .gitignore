@@ -1,6 +1,7 @@
 # PyCharm/IntelliJ files
 .idea/
 
+
 # Compiled python files
 __pycache__/
 *.pyc
@@ -11,6 +12,10 @@ __pycache__/
 venv/
 env/
 .venv/
+
+# MLflow, W&B
+mlruns/
+wandb/
 
 # Other
 *.log
