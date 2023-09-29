@@ -13,7 +13,7 @@ def go(config: DictConfig):
     os.environ["WANDB_PROJECT"] = config["main"]["project_name"]
     os.environ["WANDB_RUN_GROUP"] = config["main"]["experiment_name"]
 
-    os.environ["MLFLOW_CONDA_HOME"] = "/workspace/miniforge3/envs/IntroReproducibleWF/"
+#    os.environ["MLFLOW_CONDA_HOME"] = "/workspace/miniforge3/envs/IntroReproducibleWF/"
 #    os.environ["MLFLOW_CONDA_CREATE_ENV_CMD"] = "mamba"
 
     # You can get the path at the root of the MLflow project with this:
