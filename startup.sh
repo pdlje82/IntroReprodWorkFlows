@@ -14,17 +14,11 @@ echo 'export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]
 # Adjust PATH and initialize conda
 echo 'export PATH="/workspace/miniforge3/bin:$PATH"' >> ~/.bashrc
 
-# Add conda initialization to .bashrc
-echo 'conda init bash || true' >> ~/.bashrc
+# Source .bashrc to apply changes so far
+source ~/.bashrc
 
-# Add mamba initialization to .bashrc
-echo 'mamba init bash || true' >> ~/.bashrc
+# Initialize conda
+conda init bash
 
-# Create symlink to make 'conda' command use 'mamba'
-CONDA_PATH="/workspace/miniforge3/bin/conda"
-if [ -f "$CONDA_PATH" ] && [ ! -L "$CONDA_PATH" ]; then
-    mv $CONDA_PATH ${CONDA_PATH}_backup
-    ln -s $(which mamba) $CONDA_PATH
-fi
-
-echo "Script has finished setting up. Please run 'source ~/.bashrc' and then 'mamba activate IntroReproducibleWF' manually."
+# Source .bashrc again to have conda changes take effect
+source ~/.bashrc
