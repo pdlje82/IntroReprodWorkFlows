@@ -5,8 +5,6 @@ import pathlib
 import wandb
 import requests
 import tempfile
-import os
-import time
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -23,12 +21,10 @@ def go(args):
     # destroyed at the end of the context, so we don't leave anything
     # behind and the file gets removed even in case of errors
     logger.info(f"Downloading {args.file_url} ...")
-    # with tempfile.NamedTemporaryFile(mode='wb+') as fp:
-    temp_filename = os.path.join(tempfile.gettempdir(), basename)
-    with open(temp_filename, 'wb+') as fp:
+    with tempfile.NamedTemporaryFile(mode='wb+') as fp:
 
-        logger.info("Creating run exercise_2")
-        with wandb.init(project="exercise_2", job_type="download_data") as run:
+        logger.info("Creating run")
+        with wandb.init(job_type="download_data") as run:
             # Download the file streaming and write to open temp file
             with requests.get(args.file_url, stream=True) as r:
                 for chunk in r.iter_content(chunk_size=8192):
@@ -50,16 +46,6 @@ def go(args):
             logger.info("Logging artifact")
             run.log_artifact(artifact)
 
-            # This makes sure that the artifact is uploaded before the
-            # tempfile is destroyed
-            artifact.wait()
-
-    # Remove the temp file
-    try:
-        os.remove(temp_filename)
-    except OSError as e:
-        logger.warning(f"Error removing temp file: {temp_filename}. Error: {e}")
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -67,24 +53,15 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--file_url",
-        type=str,
-        help="URL to the input file",
-        required=True
+        "--file_url", type=str, help="URL to the input file", required=True
     )
 
     parser.add_argument(
-        "--artifact_name",
-        type=str,
-        help="Name for the artifact",
-        required=True
+        "--artifact_name", type=str, help="Name for the artifact", required=True
     )
 
     parser.add_argument(
-        "--artifact_type",
-        type=str,
-        help="Type for the artifact",
-        required=True
+        "--artifact_type", type=str, help="Type for the artifact", required=True
     )
 
     parser.add_argument(
@@ -95,9 +72,5 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-
-    # Inside download_data.py
-    args.artifact_description = args.artifact_description.replace("_", " ")
-
 
     go(args)
