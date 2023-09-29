@@ -21,7 +21,10 @@ add_to_bashrc 'export PATH="/workspace/miniforge3/bin:$PATH"'
 # Initialize conda
 add_to_bashrc 'conda init bash || true'
 source ~/.bashrc
+source ~/.bashrc
 
 # Initialize mamba
 add_to_bashrc 'mamba init bash || true'
 source ~/.bashrc
+
+mamba activate IntroReproducibleWF
