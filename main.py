@@ -1,5 +1,6 @@
 import mlflow
 import os
+import wandb
 import hydra
 from omegaconf import DictConfig
 
@@ -26,21 +27,17 @@ def go(config: DictConfig):
         },
     )
 
-    ##################
-    # Your code here: use the artifact we created in the previous step as input for the `process_data` step
-    # and produce a new artifact called "cleaned_data".
-    # NOTE: use os.path.join(root_path, "process_data") to get the path
-    # to the "process_data" component
-    ##################
     _ = mlflow.run(
-        uri=os.path.join(root_path, "process_data"),
+        os.path.join(root_path, "process_data"),
+        "main",
         parameters={
-            "file_url": config["data"]["file_url"],
-            "artifact_name": "iris_clean.csv",
-            "artifact_type": "cleaned_Data",
-            "artifact_Description": "cleaned data"
-        }
+            "input_artifact": "iris.csv:latest",
+            "artifact_name": "clean_data.csv",
+            "artifact_type": "processed_data",
+            "artifact_description": "Cleaned data"
+        },
     )
+
 
 
 if __name__ == "__main__":
