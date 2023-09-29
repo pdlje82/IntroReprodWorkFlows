@@ -12,6 +12,7 @@ def go(config: DictConfig):
     # Setup the wandb experiment. All runs will be grouped under this name
     os.environ["WANDB_PROJECT"] = config["main"]["project_name"]
     os.environ["WANDB_RUN_GROUP"] = config["main"]["experiment_name"]
+    os.environ["MLFLOW_CONDA_CREATE_ENV_CMD"] = "mamba"
 
     # You can get the path at the root of the MLflow project with this:
     root_path = hydra.utils.get_original_cwd()

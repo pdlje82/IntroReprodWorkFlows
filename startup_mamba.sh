@@ -1,17 +1,17 @@
 #!/bin/bash
 
-
-# Initialize mamba
-mamba init bash
-
-# Source .bashrc again to have mamba changes take effect
+# initialize conda & mamba
+# Adjust PATH and initialize conda
+echo 'export PATH="/workspace/miniforge3/envs/IntroReproducibleWF/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="/workspace/miniforge3/bin:$PATH"' >> ~/.bashrc
+conda init bash
 source ~/.bashrc
 
-mamba activate IntroReproducibleWF
+# activate environment
+conda activate IntroReproducibleWF
 
-# Create symlink to make 'conda' command use 'mamba'
-CONDA_PATH="/workspace/miniforge3/bin/conda"
-if [ -f "$CONDA_PATH" ] && [ ! -L "$CONDA_PATH" ]; then
-    mv $CONDA_PATH ${CONDA_PATH}_backup
-    ln -s $(which mamba) $CONDA_PATH
-fi
+# create symlink
+
+
+echo "Symlink created successfully!"
+

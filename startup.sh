@@ -11,14 +11,10 @@ echo 'parse_git_branch() {
 # Modify the PS1 variable
 echo 'export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\$ "' >> ~/.bashrc
 
-# Adjust PATH and initialize conda
-echo 'export PATH="/workspace/miniforge3/bin:$PATH"' >> ~/.bashrc
-
 # Source .bashrc to apply changes so far
 source ~/.bashrc
 
-# Initialize conda
-conda init bash
+# change to working directory
+cd /workspace/IntroReprodWorkFlows/
 
-# Source .bashrc again to have conda changes take effect
-source ~/.bashrc
+
