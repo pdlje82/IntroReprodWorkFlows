@@ -18,6 +18,9 @@ add_to_bashrc 'export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\
 # Adjust PATH and initialize conda and mamba
 add_to_bashrc 'export PATH="/workspace/miniforge3/bin:$PATH"'
 add_to_bashrc 'conda init bash || true' # || true ensures the script continues even if conda init fails
+
+source ~/.bashrc
+
 add_to_bashrc 'mamba init bash || true'
 
 # Reload the .bashrc file
