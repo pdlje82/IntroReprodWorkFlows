@@ -27,4 +27,4 @@ conda clean --all
 conda update -n base -c defaults conda
 conda install mamba -c conda-forge
 
-conda create --name IntroReproducibleWF python=3.8 mlflow jupyter pandas matplotlib requests -c conda-forge
+mamba activate IntroReproducibleWF
