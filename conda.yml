@@ -1,4 +1,4 @@
-name: download_data
+name: 00_download_data # environment name
 channels:
   - conda-forge
   - defaults

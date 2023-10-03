@@ -24,7 +24,7 @@ def go(args):
     with tempfile.NamedTemporaryFile(mode='wb+') as fp:
 
         logger.info("Creating run")
-        with wandb.init(job_type="download_data") as run:
+        with wandb.init(job_type="00_download_data") as run:
             # Download the file streaming and write to open temp file
             with requests.get(args.file_url, stream=True) as r:
                 for chunk in r.iter_content(chunk_size=8192):

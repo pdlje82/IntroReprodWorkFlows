@@ -20,7 +20,7 @@ def go(config: DictConfig):
     root_path = hydra.utils.get_original_cwd()
 
     _ = mlflow.run(
-        os.path.join(root_path, "download_data"),
+        os.path.join(root_path, "00_download_data"),
         "main",
         parameters={
             "file_url": config["data"]["file_url"],
@@ -31,7 +31,7 @@ def go(config: DictConfig):
     )
 
     _ = mlflow.run(
-        os.path.join(root_path, "process_data"),
+        os.path.join(root_path, "01_process_data"),
         "main",
         parameters={
             "input_artifact": "iris.csv:latest",

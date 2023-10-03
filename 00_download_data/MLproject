@@ -1,5 +1,5 @@
-name: download_data
-conda_env: conda.yml
+name: 00_download_data
+conda_env: conda_env.yml
 
 entry_points:
   main:
