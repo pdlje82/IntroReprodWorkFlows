@@ -1,0 +1,13 @@
+    Extract Content and Analyze:
+        Unzip the provided files and analyze their content.
+        Identify main tools, configurations, and pipeline components.
+
+    Cross-Functional Flowchart:
+        Create a swimlane diagram with each tool or component having its own lane.
+        Show the flow of operations between components and tools.
+        For each pipeline component, list its environment dependencies in rows.
+        Explicitly illustrate interactions with logging tools like Weights & Biases (e.g., saving to, loading from).
+
+    Output:
+        Provide the DOT representation of the flowchart.
+        Include detailed explanations for clarity.

@@ -1,0 +1,52 @@
+digraph G {
+    // Define graph orientation and rank direction
+    rankdir=LR;
+    compound=true;
+
+    // Define nodes common styles
+    node [shape=box];
+
+    // Define clusters (swimlanes)
+    subgraph cluster_0 {
+        label="MLflow";
+        color=blue;
+        "MLflow" [label="MLflow\nOrchestrator", shape=ellipse];
+        "MLproject" [label="MLproject\nConfig"];
+    }
+
+    subgraph cluster_1 {
+        label="Hydra";
+        color=red;
+        "Hydra" [label="Hydra\nConfig Manager", shape=ellipse];
+        "config.yaml" [label="config.yaml"];
+    }
+
+    subgraph cluster_2 {
+        label="Weights & Biases";
+        color=gold;
+        "wandb" [label="Weights & Biases\nExperiment Logger", shape=ellipse];
+    }
+
+    subgraph cluster_3 {
+        label="Pipeline Components";
+        color=lightcoral;
+        "download_data" [label="download_data\n- python=3.8\n- requests\n- wandb", shape=record];
+        "process_data" [label="process_data\n- python=3.8\n- requests\n- seaborn\n- pandas\n- scikit-learn\n- matplotlib\n- pillow\n- wandb", shape=record];
+    }
+
+    subgraph cluster_4 {
+        label="Main Script";
+        color=lightblue;
+        "main.py" [label="main.py\n(Main Script)"];
+    }
+
+    // Define relationships
+    "main.py" -> "MLflow";
+    "main.py" -> "Hydra";
+    "main.py" -> "wandb" [label="logs to"];
+    "Hydra" -> "config.yaml";
+    "MLflow" -> "download_data";
+    "download_data" -> "process_data";
+    "download_data" -> "wandb" [label="saves to"];
+    "process_data" -> "wandb" [label="loads from"];
+}
