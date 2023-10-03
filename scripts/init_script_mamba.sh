@@ -30,6 +30,8 @@ echo 'export MLFLOW_CONDA_HOME="/workspace/miniforge3/"' >> ~/.bashrc
 echo 'export MLFLOW_CONDA_CREATE_ENV_CMD="mamba"' >> ~/.bashrc
 source ~/.bashrc
 
+
+# this has to be done manually from here--------------------------------------------------------------------------------
 # initialize conda
 conda init bash
 source ~/.bashrc

@@ -20,21 +20,10 @@ def go(config: DictConfig):
         os.path.join(root_path, "00_download_data"),
         "main",
         parameters={
-            "file_url": config["data"]["file_url"],
-            "artifact_name": "iris.csv",
-            "artifact_type": "raw_data",
-            "artifact_description": "Input data"
-        },
-    )
-
-    _ = mlflow.run(
-        os.path.join(root_path, "01_process_data"),
-        "main",
-        parameters={
-            "input_artifact": "iris.csv:latest",
-            "artifact_name": "clean_data.csv",
-            "artifact_type": "processed_data",
-            "artifact_description": "Cleaned data"
+            "file_url":             config["data_set"]["file_url"],         # input data
+            "artifact_name":        config["data_set"]["artifact_name"],
+            "artifact_type":        config["data_set"]["artifact_type"],
+            "artifact_description": config["data_set"]["artifact_description"]
         },
     )
 

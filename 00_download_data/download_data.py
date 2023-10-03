@@ -7,7 +7,7 @@ import requests
 import tempfile
 
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)-15s %(message)s")  # levels: DEBUG, INFO, ...
 logger = logging.getLogger()
 
 
@@ -16,7 +16,7 @@ def go(args):
     # Derive the base name of the file from the URL
     basename = pathlib.Path(args.file_url).name.split("?")[0].split("#")[0]
 
-    # Download file, streaming so we can download files larger than
+    # Download file streaming, so we can download files larger than
     # the available memory. We use a named temporary file that gets
     # destroyed at the end of the context, so we don't leave anything
     # behind and the file gets removed even in case of errors
@@ -34,7 +34,7 @@ def go(args):
             # to W&B
             fp.flush()
 
-            logger.info("Creating artifact")
+            logger.info("Creating artifact --> downloaded dataset")
             artifact = wandb.Artifact(
                 name=args.artifact_name,
                 type=args.artifact_type,
@@ -53,15 +53,24 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--file_url", type=str, help="URL to the input file", required=True
+        "--file_url",
+        type=str,
+        help="URL to the input file",
+        required=True
     )
 
     parser.add_argument(
-        "--artifact_name", type=str, help="Name for the artifact", required=True
+        "--artifact_name",
+        type=str,
+        help="Name for the artifact",
+        required=True
     )
 
     parser.add_argument(
-        "--artifact_type", type=str, help="Type for the artifact", required=True
+        "--artifact_type",
+        type=str,
+        help="Type for the artifact",
+        required=True
     )
 
     parser.add_argument(

@@ -1,5 +1,8 @@
 main:
-  project_name: experiment_3
-  experiment_name: dev
-data:
-  file_url: https://raw.githubusercontent.com/scikit-learn/scikit-learn/4dfdfb4e1bb3719628753a4ece995a1b2fa5312a/sklearn/datasets/data/iris.csv
+  project_name: "Yolov5_PV_1st_training"
+  experiment_name: "dev"
+data_set:
+  file_url: "https://drive.google.com/file/d/1YQv0o37_LcnLCdzlCjF6yjuPB9jri5Pf/view?usp=sharing"
+  artifact_name: "Comal_Alzo_1st_labelledData"
+  artifact_type: "Yolov5 Dataset"
+  artifact_description: "First labelled dataset from Comal Alzo, a lot of data is still missing!"
