@@ -17,6 +17,7 @@ if [ ! -d "IntroReprodWorkFlows" ]; then
 fi
 
 # Download and install Miniforge if it doesn't exist
+# Install everything in /workspace (runpod.io)
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 bash Miniforge3-Linux-x86_64.sh -b -p /workspace/miniforge3
 
