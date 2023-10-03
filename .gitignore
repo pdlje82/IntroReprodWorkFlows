@@ -20,4 +20,5 @@ wandb/
 # Other
 *.log
 *.sqlite3
+*.zip
 old/
