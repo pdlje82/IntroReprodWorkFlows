@@ -1,17 +1,18 @@
 #!/bin/bash
 
-# initialize conda & mamba
+
 # Adjust PATH and initialize conda
-echo 'export PATH="/workspace/miniforge3/envs/IntroReproducibleWF/bin:$PATH"' >> ~/.bashrc
 echo 'export PATH="/workspace/miniforge3/bin:$PATH"' >> ~/.bashrc
+
+# set mamba as conda executable for MLflow
+echo 'export MLFLOW_CONDA_HOME="/workspace/miniforge3/envs/RepWF/"' >> ~/.bashrc
+echo 'export MLFLOW_CONDA_CREATE_ENV_CMD="mamba"' >> ~/.bashrc
+source ~/.bashrc
+
 conda init bash
 source ~/.bashrc
 
 # activate environment
-conda activate IntroReproducibleWF
+conda activate RepWF
 
-# create symlink
-
-
-echo "Symlink created successfully!"
 
